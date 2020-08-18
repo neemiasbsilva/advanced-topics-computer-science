@@ -1,30 +1,41 @@
+import importlib.util
 
-def query_function(querys, synonyms):
-
-    for query in querys:
-        query = query.split(' ')
-        for word in query:
-            if synonyms.get(word) == None:
-                return False
-    
-    return True 
+spec = importlib.util.spec_from_file_location("module.name", "union-find.py")
+union_find = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(union_find)
 
 
 if __name__ == '__main__':
     
-    st_string = "taxa coronavirus MS"
-    st_string_split = st_string.split(' ')
-    nd_string = "percentual covid MS"
-    nd_string_split = nd_string.split(' ')
 
     synonyms = {}
+    id = 0
+    for i in range(int(input("Enter the number of Synonyms: "))):
+        synonym = list(input().split(','))
+        synonyms[synonym[0]] = id
+        id += 1
+        synonyms[synonym[1]] = id
+        id += 1
 
-    for i in range(len(st_string_split)):
-        synonyms[st_string_split[i]] = nd_string_split[i]
-        synonyms[nd_string_split[i]] = st_string_split[i]
+    pset = [i for i in range(len(synonyms))]
+    print(pset)
+    uf = union_find.UnionFind(pset)
 
-    querys = ["taxa coronavirus MS", "percentual MS"]
-
-    print(query_function(querys, synonyms))
-    
-    
+    for i in range(0, len(pset), 2):
+        uf.unionSet(list(synonyms.values())[i], list(synonyms.values())[i+1])
+    print(uf.pset)
+    for i in range(int(input("Enter the number of querys: "))):
+        strings = input().split(',')
+        st_string = strings[0].split(' ')
+        nd_string = strings[1].split(' ')
+        equal = False
+        for st_word, nd_word in zip(st_string, nd_string):
+            if (synonyms.get(st_word) != None and synonyms.get(nd_word) != None) and uf.issameSet(synonyms[st_word], synonyms[nd_word]):
+                equal = True
+            elif st_word == nd_word :
+                equal = True
+            else:
+                equal = False
+                break
+        
+        print((lambda result: "true" if result == True else "false")(equal))
