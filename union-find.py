@@ -1,9 +1,9 @@
 
 class UnionFind:
 
-    def __init__(self, pset):
+    def __init__(self, pset_length):
 
-        self.pset = [i for i in range(len(pset))]
+        self.pset = [i for i in range(pset_length)]
 
     
     def findSet(self, i):
