@@ -48,12 +48,12 @@ if __name__ == "__main__":
 
     for i in range(K):
         # example: C 1 2
-        ope = input().split(' ')
-
-        if ope[0] == 'C':
-            if UF.issameSet(int(ope[1])-1, int(ope[2])-1):
+        ope, *line = input().split()
+        v1, v2 = list(map(int, line))
+        if ope == 'C':
+            if UF.issameSet(v1-1, v2-1):
                 print('S')
             else:
                 print('N')
         else:
-            UF.unionSet(int(ope[1])-1, int(ope[2])-1)
+            UF.unionSet(v1-1, v2-1)
