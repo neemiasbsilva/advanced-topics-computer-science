@@ -26,19 +26,21 @@ class Graph:
         self.edge_list = []
 
     def add_edge(self, u, v, w):
-        heapq.heappush(self.edge_list, w, (u, v))
+        heapq.heappush(self.edge_list,(w, [u, v]))
 
 
 if __name__ == "__main__":
 
     g = Graph()
-    m, n = int(input().split(' '))
+    m, n = list(map(int, input().split(' ')))
+
     while(n != 0):
 
-        x, y, z = int(input().split(' '))
-        
-        g.add_edge(x, y, z)
+        for i in range(n):
+            x, y, z = list(map(int,input().split(' ')))
+            g.add_edge(x, y, z)
 
+        m, n = list(map(int,input().split(' ')))
         print(g.edge_list)
 
     
