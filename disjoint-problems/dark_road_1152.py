@@ -32,8 +32,9 @@ class Graph:
     def krukals_algorithm(self):
         
         s_edge_list = sorted(self.edge_list, key= lambda ele: ele[0])
-        
-        print(s_edge_list)
+        # s_edge_list = self.edge_list.copy()
+
+        # print(s_edge_list)
         uf  = UnionFind(self.V)
         cost = 0
         for edge in s_edge_list:
