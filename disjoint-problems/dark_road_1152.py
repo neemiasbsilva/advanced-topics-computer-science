@@ -48,11 +48,12 @@ if __name__ == "__main__":
     m, n = list(map(int, input().split(' ')))
     g = Graph(m)
     while(n != 0):
-
+        total = 0
         for i in range(n):
             x, y, z = list(map(int,input().split(' ')))
+            total += z
             g.add_edge(x, y, z)
-        print(g.krukals_algorithm())
+        print(total-g.krukals_algorithm())
         m, n = list(map(int,input().split(' ')))
         g = Graph(m)
 
