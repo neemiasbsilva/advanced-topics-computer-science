@@ -1,4 +1,4 @@
-
+from sys import stdin, stdout
 
 class UnionFind:
 
@@ -24,20 +24,24 @@ class UnionFind:
 
 if __name__ == "__main__":
     while True:
-        n, m = list(map(int, input().split(' ')))
+        # n, m = list(map(int, input().split(' ')))
+        n, m = map(int, stdin.readline().strip().split())
         if n == 0:
             break
         
-        player_points = list(map(int, input().strip(' ').split(' ')))
+        # player_points = list(map(int, input().strip(' ').split(' ')))
+        player_points = list(map(int, stdin.readline().strip().split()))
+
         uf = UnionFind(n)
         number_wins = 0
-        
+
         for i in range(m):
-            q, a, b = list(map(int, input().split(' ')))
+            # q, a, b = list(map(int, input().split(' ')))
+            q, a, b = map(int, stdin.readline().strip().split())
             a -= 1
             b -= 1
             if q == 1:
-                p1, p2 = player_points[a], player_points[b]
+                p1, p2 = player_points[uf.find_set(a)], player_points[uf.find_set(b)]
                 uf.union_set(a, b)
                 player_points[uf.find_set(a)] = p1 + p2
 
