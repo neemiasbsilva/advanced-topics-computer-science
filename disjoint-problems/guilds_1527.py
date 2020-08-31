@@ -2,9 +2,8 @@
 
 class UnionFind:
 
-    def __init__(self, pset_length, player_points):
+    def __init__(self, pset_length):
         self.pset = [i for i in range(pset_length)]
-        self.player_points = player_points
 
     def find_set(self, i):
         if self.pset[i] == i: return i
@@ -30,33 +29,27 @@ if __name__ == "__main__":
             break
         
         player_points = list(map(int, input().strip(' ').split(' ')))
-        uf = UnionFind(n, player_points)
+        uf = UnionFind(n)
         number_wins = 0
+        
         for i in range(m):
             q, a, b = list(map(int, input().split(' ')))
             a -= 1
             b -= 1
             if q == 1:
+                p1, p2 = player_points[a], player_points[b]
                 uf.union_set(a, b)
+                player_points[uf.find_set(a)] = p1 + p2
+
 
             else:
                 a_parent = uf.find_set(a)
                 b_parent = uf.find_set(b)
+                rafael_parent = uf.find_set(0)
 
-                guilds_a = [i for i in range(len(uf.pset)) if uf.pset[i] == a_parent]
-                guilds_b = [i for i in range(len(uf.pset)) if uf.pset[i] == b_parent]
-
-                result_a = result_b = 0
-
-                for i in range(len(guilds_a)):
-                    result_a += player_points[guilds_a[i]]
-                
-                for i in range(len(guilds_b)):
-                    result_b += player_points[guilds_b[i]]
-
-                if guilds_a[0] == player_points[0]:
-                    if result_a > result_b: number_wins += 1
-                else:
-                    if result_b > result_a: number_wins += 1
+                if rafael_parent == a_parent:
+                    if player_points[a_parent] > player_points[b_parent]: number_wins+=1
+                elif rafael_parent == b_parent:
+                    if player_points[b_parent] > player_points[a_parent]: number_wins+=1
 
         print(number_wins)
