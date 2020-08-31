@@ -56,4 +56,4 @@ if __name__ == "__main__":
                 elif rafael_parent == b_parent:
                     if player_points[b_parent] > player_points[a_parent]: number_wins+=1
 
-        print(number_wins)
+        stdout.write(str(number_wins)+'\n')
