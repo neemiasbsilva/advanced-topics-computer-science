@@ -4,6 +4,7 @@ class UnionFind:
     def __init__(self, pset_length):
 
         self.pset = [i for i in range(pset_length)]
+        self.rank = [0 for i in range(pset_length)]
 
     
     def findSet(self, i):
@@ -15,6 +16,18 @@ class UnionFind:
 
     def unionSet(self, i, j):
         self.pset[self.findSet(i)] = self.findSet(j)
+
+    def unionSetRank(self, i, j):
+        if not self.issameSet(i, j):
+            x, y = self.findSet(i), self.findSet(j)
+            if self.rank[x] > self.rank[y]:
+                self.rank[y] = x
+            else:
+                self.rank[x] = y
+
+                if self.rank[x] == self.rank[y]:
+                    self.rank[y] += 1
+            
 
     def issameSet(self, i, j):
         if self.findSet(i) == self.findSet(j):
