@@ -7,10 +7,8 @@
 - [About](##about)
 - [Concepts Used](#concepts)
 - [Kruskal's Algorithms](#kruska's)
-- [Team](#team)
-- [FAQ](#faq)
-- [Support](#support)
-- [License](#license)
+- [License](##license)
+- [Reference](##reference)
 
 
 ## About
