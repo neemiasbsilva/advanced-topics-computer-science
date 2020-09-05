@@ -1,14 +1,12 @@
 # Advanced Topics in Computer Science
 
-## Table of Contents (Optional)
-
-> If your `README` has a lot of info, section headers might be nice.
+## Table of Contents
 
 - [About](##about)
 - [Concepts Used](#concepts)
 - [Kruskal's Algorithms](#kruska's)
 - [License](##license)
-- [Reference](##reference)
+- [References](##references)
 
 
 ## About
