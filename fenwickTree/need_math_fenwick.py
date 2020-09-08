@@ -38,6 +38,6 @@ if __name__ == "__main__":
         action, i = line.strip().split()
         i = int(i)
         if action == 'a':
-            fenwick_tree.adjust(i, n_buggys[i-1])
+            fenwick_tree.adjust(i, -n_buggys[i-1])
         else:
-            stdout.write(str(fenwick_tree.rsq(1, i))+'\n')
+            stdout.write(str(fenwick_tree.rsq(1, i-1))+'\n')
