@@ -5,7 +5,7 @@ LSOne = lambda b: b&(-b)
 
 class FenwickTree:
 
-    def __init__ (self, n=10**5):
+    def __init__ (self, n):
         self.ft = [0 for i in range(n+1)]
 
     def rsq_util(self, b): # return RSQ(1,b)
@@ -31,12 +31,21 @@ if __name__ == "__main__":
         ip, m = list(map(int, stdin.readline().strip().split()))
         if ip == '':
             break
-        fenwick_tree = FenwickTree()
         count = 0
+        l_pc = []
+        l_na = []
         for i in range(m):
             pc, na = list(map(int, stdin.readline().strip().split()))
-            
-            if -1 < fenwick_tree.rsq(pc-ip, pc+ip) <= na:
+            l_pc.append(pc)
+            l_na.append(na)
+
+        size = max(l_pc)
+        
+        fenwick_tree = FenwickTree(size)
+        for pc, na in zip(l_pc, l_na):
+            pcmax = size if pc+ip > size else pc+ip
+            pcmin = 0 if pc-ip <= 0 else pc-ip
+            if -1 < fenwick_tree.rsq(pcmin, pcmax) <= na:
                 count += 1
                 fenwick_tree.adjust(i+1, pc)
             # Brute force    
