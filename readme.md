@@ -27,6 +27,7 @@ A Kruskal's algorithm find Minimum Spanning Tree (MST) in a undirected graph. It
 
 ### Fenwick Tree
 
+The Fenwick Tree (also kno as Binary Indexed Tree ([BIT](https://en.wikipedia.org/wiki/Fenwick_tree))) is a useful data sctuture for implemeting **dynamic comulative frequency tables**.
 
 ## License
 
