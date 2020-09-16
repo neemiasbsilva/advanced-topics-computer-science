@@ -34,7 +34,7 @@ class FenwickTree {
         }
 
         void adjust(int k, int v){
-            for(; k; k += k&(-k)) ft[k] += v;
+            for(; k < (int)ft.size(); k += k&(-k)) ft[k] += v;
         }
 };
 
@@ -51,16 +51,15 @@ int main(){
             l_na.push_back(na);
         }
         int size = *max_element(l_pc.begin(), l_pc.end());
-
         FenwickTree fenwickTree(size);
         count = 0;
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < l_pc.size(); i++)
         {
             pc = l_pc[i];
             na = l_na[i];
 
             int pcmax = (pc+ip > size ? size:pc+ip);
-            int pcmin = (pc-ip <= 0 ? 1: pc-ip);
+            int pcmin = (pc-ip <= 0 ? 1:pc-ip);
 
             if(fenwickTree.rsq(pcmin, pcmax) <= na) {
                 count += 1;
