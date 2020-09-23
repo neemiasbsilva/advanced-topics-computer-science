@@ -20,7 +20,7 @@ class FenwickTree:
 
         while k < len(self.ft):
             self.ft[k] += v
-            k += LSOne(v)
+            k += LSOne(k)
 
 if __name__ == "__main__":
     t = int(stdin.readline())
@@ -29,18 +29,23 @@ if __name__ == "__main__":
         n = int(n)
         u = int(u)
         fenwick_tree = FenwickTree(n)
+
+        # print()
+        # print("0: {}".format(fenwick_tree.ft))
         for i in range(u):
             l, r, val = stdin.readline().split(' ')
             l = int(l)
             r = int(r)
             val = int(val)
 
-            fenwick_tree.adjust(l, val)
-            if r+1 <= n:
-                fenwick_tree.adjust(r+1, -val)
+            fenwick_tree.adjust(l+1, val)
+            fenwick_tree.adjust(r+2, -val)
+
+            # print("{}: {}".format(i+1, fenwick_tree.ft))
 
         q  = int(stdin.readline())
 
         for i in range(q):
-            out = fenwick_tree.rsq_util(int(stdin.readline()))
+            val = int(stdin.readline())+1
+            out = fenwick_tree.rsq_util(val)
             stdout.write(str(out)+'\n')
