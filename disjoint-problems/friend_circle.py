@@ -6,6 +6,7 @@ class UnionFind:
     def __init__(self, n):
         self.n = n
         self.pset = [i for i in range(n)]
+        self.qtd = [1 for i in range(n)]
 
     
     def find_set(self, i):
@@ -16,7 +17,18 @@ class UnionFind:
 
     
     def union_set(self, i, j):
-        self.pset[self.find_set(i)] = self.find_set(j)
+        m1, m2 = self.find_set(i), self.find_set(j)
+        if m1 == m2: return self.qtd[m1] # same family
+        
+        p1, p2 = self.qtd[m1], self.qtd[m2] # query the number of people i and j are.
+
+        self.pset[m1] = m2
+
+        self.qtd[m2] = p1+p2
+
+        return self.qtd[m2]
+
+
 
     def is_same_set(self, i, j):
         return self.find_set(i) == self.find_set(j)
@@ -44,9 +56,4 @@ if __name__ == "__main__":
         uf = UnionFind(n_people)
         for s1, s2 in relation:
             
-            uf.union_set(map_input[s1], map_input[s2])
-            people = 0
-            for i in range(len(uf.pset)):
-                if uf.is_same_set(map_input[s1], uf.pset[i]): people += 1
-
-            stdout.write(str(people)+'\n')
+            stdout.write(str(uf.union_set(map_input[s1], map_input[s2]))+'\n')
