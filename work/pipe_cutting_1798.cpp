@@ -24,7 +24,7 @@ int pipe_cutting(int d){
     for(int i = 0; i < n; i++){
         result = max(result, v[i] + pipe_cutting(d+c[i]));
     }
-    memory[d] = result;
+    memory[d] = max(0, result);
     return memory[d];
 }
 
