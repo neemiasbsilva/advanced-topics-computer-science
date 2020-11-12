@@ -1,6 +1,6 @@
 from sys import stdout, stdin, maxsize
 
-memory = [-1 for i in range(m+1)]
+memory = [-1 for i in range(1000000+1)]
 def ice_block(m, arr):
 
     if m == 0: return 0
