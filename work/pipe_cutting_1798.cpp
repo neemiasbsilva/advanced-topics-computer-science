@@ -12,25 +12,29 @@ using namespace std;
 
 typedef vector<int> vi;
 
-vi c(1000 + 1), v(1000+1);
+vi c(1000 + 1), v(1000 + 1), memory;
 
 int t, n;
 
 int pipe_cutting(int d){
     if(d == t) return 0;
     else if(d > t) return INF;
+    if(memory[d] != -1) return memory[d];
     int result = INF;
     for(int i = 0; i < n; i++){
         result = max(result, v[i] + pipe_cutting(d+c[i]));
     }
-    return result;
+    memory[d] = result;
+    return memory[d];
 }
 
 int main(){
     while(cin >> n >> t){
+
+        memory.assign(t+1, -1);
         for(int i = 0; i < n; i++) cin >> c[i] >> v[i];
 
-        cout << pipe_cutting(0);
+        cout << pipe_cutting(0) << endl;
     }
     return 0;
 }
