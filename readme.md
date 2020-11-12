@@ -4,7 +4,9 @@
 
 - [About](##about)
 - [Concepts Used](#concepts)
+- [Fenwick Tree (Binary Indexed Tree - BIT)](#union_find)
 - [Kruskal's Algorithms](#kruska's)
+- [Dynamic program](#dynamic-program)
 - [License](##license)
 - [References](##references)
 
